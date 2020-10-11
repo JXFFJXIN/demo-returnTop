@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画</title>
+</head>
+    <style>
+        * {
+            padding:0px;
+            margin:0px;
+        }
+        .box{
+            position: relative;
+            left:0px;
+            height: 100px;
+            width:100px;
+            background: red;
+        }
+    </style>
+<body>
+    <div class="box"></div>
+    <script>
+        var box = document.getElementsByClassName('box')[0];
+        var speed = 5;
+        var timer = setInterval(function(){
+            // box.offsetLeft + speed = 300
+            speed = Math.ceil((300-box.offsetLeft)/7) //缓冲
+            // Math.ceil大于0.1向上取整
+            box.style.left = box.offsetLeft + speed + 'px';
+            if(box.offsetLeft > 300 ){
+                clearInterval(timer);
+                console.log('over');
+            }
+        },50)
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding:0;
+            margin:0;
+        }
+        body {
+            height:2000px;
+        }
+        a.topAction{
+            position:fixed;
+            top:10px;
+            right:10px;
+            display:none;
+            padding:3px;
+            text-decoration:none;
+            background:rgb(144,33,33);
+            color:white;
+            font:bold 14px;
+            border-radius: 7px;
+        }
+    </style>
+</head>
+<body>
+    <div>顶部</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    <a href="#topAction" class="topAction">BT</a>
+</body>
+<script>
+    /*
+    1. 锚点的方式，来实现，通过点击回到特定位置
+    2. scrollTop 获取和设置一个元素的内容垂直滚动的像素值
+    3. scrollTo 滚动当前的window中显示的文档，让文档中由x和y指定的位于显示区域的xy值，scrollTo(0,0)
+    4. scrollBy(x,y) x,y相对值
+    */
+   var topAction = document.getElementsByClassName('topAction')[0];
+   var timer = null; //添加定时器
+   var isbool = true; // 添加锁
+   topAction.onclick = function(){
+    //    document.documentElement.scrollTop = 0;
+    //    scrollTo(0,0);
+    // var isTop = document.documentElement.scrollTop || document.body.scrollTop;
+    // scrollBy(0,-isTop);
+        clearInterval(timer);
+        timer = setInterval(function(){
+            var isTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var speed = Math.ceil((isTop-0)/2);
+            scrollBy(0,-(isTop - speed))
+            isbool = true;//用于阻止滚动事件清除定时器
+            if(isTop == 0 ){
+                clearInterval(timer)
+            }
+        },20)
+    //    置顶
+   }
+   window.onscroll = function(){
+    //    触发滚动条事件
+    var isTop = document.documentElement.scrollTop || document.body.scrollTop;
+    if(isTop>0){
+        topAction.style.display="block";
+    }else{
+        topAction.style.display="none";
+    }
+    if(!isbool){
+        // 用于判断点击回到顶部按钮之后，滚动条回滚的过程中，若手动触发滚动条，则清除定时器
+        clearInterval(timer);
+    }
+    isbool = false;
+   }
+</script>
+</html>
